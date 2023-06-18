@@ -1,9 +1,9 @@
 ---
-title: "Categories1"
+title: "자바하린"
 layout: category
-permalink: /categories/categories1/
+permalink: /categories/자바하린/
 author_profile: true
-taxonomy: Categories1
+taxonomy: 자바하린
 sidebar:
   nav: "categories"
 ---
