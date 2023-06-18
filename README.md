@@ -1,3 +1,3 @@
-# rineeee.github.io
+# 소소한 기술 블로그
 
 footprints that record small learning 📚
