@@ -1,9 +1,9 @@
 ---
-title: "Categories2"
+title: "알고리즘하린"
 layout: category
-permalink: /categories/categories2/
+permalink: /categories/알고리즘하린/
 author_profile: true
-taxonomy: Categories2
+taxonomy: 알고리즘하린
 sidebar:
   nav: "categories"
 ---

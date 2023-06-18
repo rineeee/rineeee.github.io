@@ -1,25 +1,7 @@
 var store = [{
-        "title": "[포스팅 예시] 이곳에 제목을 입력하세요",
-        "excerpt":"🦥 본문   본문은 여기에 …  ","categories": ["Categories1"],
-        "tags": ["tag1","tag2"],
-        "url": "/categories1/post-name-here/",
-        "teaser": null
-      },{
-        "title": "[포스팅 예시] 이곳에 제목을 입력하세요",
-        "excerpt":"🦥 본문   본문은 여기에 …  ","categories": ["Categories2"],
-        "tags": ["tag1","tag2"],
-        "url": "/categories2/post-name-here-2/",
-        "teaser": null
-      },{
-        "title": "[포스팅 예시] 이곳에 제목을 입력하세요",
-        "excerpt":"🦥 본문   본문은 여기에 …  ","categories": ["Categories3"],
-        "tags": ["tag1","tag2"],
-        "url": "/categories3/post-name-here-3/",
-        "teaser": null
-      },{
-        "title": "[포스팅 예시] 이곳에 제목을 입력하세요",
-        "excerpt":"🦥 본문   본문은 여기에 …  ","categories": ["Categories4"],
-        "tags": ["tag1","tag2"],
-        "url": "/categories4/post-name-here-4/",
+        "title": "공변성, 반공변성 차이",
+        "excerpt":"공변성, 반변성, 무공변성 그게 뭔데 …   이제 알아보자 ^^~!  ","categories": ["ETC"],
+        "tags": [],
+        "url": "/ETC/%EB%B3%80%EC%84%B1/",
         "teaser": null
       }]
