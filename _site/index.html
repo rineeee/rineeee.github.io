@@ -1,16 +1,59 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
   Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
 <html lang="ko" class="no-js">
   <head>
+    <style> 
+      ::-webkit-scrollbar{ 
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        width: 0px;
+        background-color: rgba(224, 224, 224, 0.2);
+        /* border-radius: 5px; */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        width: 0px;
+        background-color: rgba(220, 219, 218, 0.6);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        width: 10px;
+        height: 20px;
+        /* background-color: rgba(190, 190, 190, 0.2); */
+        background-color: rgba(193, 192, 191, 0.7);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        width: 10px;
+        /* background-color: rgba(150, 150, 150, 0.1); */
+        background-color: rgba(224, 224, 224, 0.5);
+        border-radius: 5px;
+        /* background: transparent; */
+        /* border-radius: 10px; */
+      }
+
+      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+          width:0px;
+          height: 0px;
+          /* background-color: rgb(14, 221, 24); */
+          /* border-radius: 50%; */
+      }
+    </style>
+    
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>오늘 뭐하린</title>
-<meta name="description" content="An amazing website.">
+<meta name="description" content="소소한 배움 저장소 📚">
 
 
   <meta name="author" content="모하린">
@@ -24,7 +67,7 @@
 <meta property="og:url" content="http://localhost:4000/">
 
 
-  <meta property="og:description" content="An amazing website.">
+  <meta property="og:description" content="소소한 배움 저장소 📚">
 
 
 
@@ -62,7 +105,6 @@
 
 
 
-
 <!-- end _includes/seo.html -->
 
 
@@ -79,9 +121,22 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
 
 
     <!-- start custom head snippets -->
@@ -90,16 +145,29 @@
 
 <!-- end custom head snippets -->
 
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://rineeee.github.io/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://rineeee.github.io/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://rineeee.github.io/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://rineeee.github.io/assets/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="https://rineeee.github.io/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
   <body class="layout--home">
     <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
     <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
   </ul>
 </nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
 
     
 
@@ -112,10 +180,16 @@
           오늘 뭐하린
           
         </a>
-        <ul class="visible-links"></ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://rineeee.github.io/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/rineeee">GitHub</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">토글 메뉴</span>
+          <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -136,47 +210,29 @@
   
 
 
-<div itemscope itemtype="https://schema.org/Person" class="h-card">
+<div itemscope itemtype="https://schema.org/Person">
 
   
     <div class="author__avatar">
-      <a href="http://localhost:4000/">
-        <img src="/assets/images/profile.jpg" alt="모하린" itemprop="image" class="u-photo">
-      </a>
+      
+        <img src="/assets/images/profile.jpg" alt="모하린" itemprop="image">
+      
     </div>
   
 
-  <div class="author__content">
-    <h3 class="author__name p-name" itemprop="name">
-      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">모하린</a>
-    </h3>
+  <!-- 2022.02.17 author content hidden -->
+  <!-- <div class="author__content">
     
-      <div class="author__bio p-note" itemprop="description">
-        <p>소소한 배움의 기록 📚</p>
-
-      </div>
+      <h3 class="author__name" itemprop="name">모하린</h3>
     
-  </div>
+    
+  </div> -->
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">팔로우</button>
+    <!-- <button class="btn btn--inverse">Follow</button> -->
     <ul class="author__urls social-icons">
       
-        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">South Korea</span>
-        </li>
-      
 
-      
-        
-          
-            <li><a href="https://github.com/rineeee" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
-          
-        
-          
-            <li><a href="mailto:harin14@naver.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
-          
-        
       
 
       
@@ -229,7 +285,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -238,6 +294,62 @@
   </div>
 </div>
 
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    <!-- <li>
+      <span class="nav__total">🌴 Total Posts: 4</span>
+    </li> -->
+    
+    
+      <li>
+        
+              <a href="/categories/categories1/"><span class="nav__sub-title">Categories1</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="/categories/categories2/"><span class="nav__sub-title">Categories2</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="/categories/categories3/"><span class="nav__sub-title">Categories3</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="/categories/categories4/"><span class="nav__sub-title">Categories4</span></a>
+        
+
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
   
   </div>
 
@@ -249,12 +361,156 @@
     
     
 
-<h3 class="archive__subtitle">최근 포스트</h3>
+<h3 class="archive__subtitle">Recent posts</h3>
 
 
 
 
 <div class="entries-list">
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/categories4/post-name-here-4/" rel="permalink">[포스팅 예시] 이곳에 제목을 입력하세요
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-24T00:00:00+09:00">July 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">본문의 주요 내용을 여기에 입력하세요
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/categories3/post-name-here-3/" rel="permalink">[포스팅 예시] 이곳에 제목을 입력하세요
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-24T00:00:00+09:00">July 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">본문의 주요 내용을 여기에 입력하세요
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/categories2/post-name-here-2/" rel="permalink">[포스팅 예시] 이곳에 제목을 입력하세요
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-24T00:00:00+09:00">July 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">본문의 주요 내용을 여기에 입력하세요
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/categories1/post-name-here/" rel="permalink">[포스팅 예시] 이곳에 제목을 입력하세요
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-05-21T00:00:00+09:00">May 21, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">본문의 주요 내용을 여기에 입력하세요
+</p>
+  </article>
+</div>
+
   
 </div>
 
@@ -275,7 +531,7 @@
         <div class="page__footer-follow">
   <ul class="social-icons">
     
-      <li><strong>팔로우:</strong></li>
+      <li><strong>Follow:</strong></li>
     
 
     
@@ -287,7 +543,7 @@
     
 
     
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
     
   </ul>
 </div>
