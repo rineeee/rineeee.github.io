@@ -1,19 +1,61 @@
 ---
-title: "공변성, 반공변성 차이"
+title: "공변성, 반공변성, 무공변성 차이"
 excerpt: "공변성, 반공변성, 무공변성 차이를 알아보자"
 
 categories:
-  - ETC
+  - 자바&코틀린하린
 
-permalink: /ETC/변성/
+permalink: /자바&코틀린하린/변성/
 
 toc: true
 toc_sticky: true
 
-date: 2023-06-18
-last_modified_at: 2023-06-18
+date: 2023-07-09
+last_modified_at: 2023-07-09
 ---
 
-## 공변성, 반변성, 무공변성 그게 뭔데 ...
+## 공변성, 반공변성, 무공변성이란?
 
-이제 알아보자 ^^~!
+### 이펙티브 코틀린
+![코틀린](https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/kotlin.png?raw=true)
+코틀린 공부를 해본 사람이라면 대부분은 읽어봤을 "이펙티브 코틀린"에서 공변성, 반공변성이라는 단어가 나옵니다. 
+책을 읽어봐도 쉽게 이해되지 않는 단어이기 때문에 간단하게 정리를 해보려 합니다.
+
+## Generics 
+아래 코드와 같이 제너릭은 동일한 코드로 여러 타입을 지원해주기 위해 존재합니다. 한가지 타입에 대한 템플릿이 아니라 여러가지 타입을 사용할 수 있는 클래스같은 코드를 간단하게 작성할 수 있습니다.
+
+    class Box<T>(t: T)  {  
+	    var value = t 
+    }
+    
+    val box: Box<Int>  = Box<Int>(1)
+
+
+## 공변성, 반공변성, 무공변성
+제너릭을 사용할 때 주의해야 할 사항이 있습니다. 자바에서 `String`은 `Object`의 sub type입니다. 그러나 `List<String>` 은 `List<Object>`의 sub type이 아닙니다. 그래서 아래와 같이 컴파일 타임 때 에러를 발생시킵니다. 
+
+    // Java  
+    List<String> strs =  new  ArrayList<String>();  
+    List<Object> objs = strs; // error
+ 
+이렇게 형식 인자들끼리는 sub type 관계를 만족하더라도 제네릭을 사용하는 클래스와 인터페이스에서는 sub type 관계가 유지되지 않는 것이 `Invariance(무공변성)`입니다.
+ 
+제너릭이라는 개념이 도입되면서 Java에서는 모든 타입을 대신할 수 있는 와일드카드 타입(<?>)이 추가되었습니다. 제네릭 형식 인자 선언에 `? extends E` 와 같은 문법을 통해 `E`나 `E`의 sub type의 제네릭 형식을 전달받아 사용할 수 있습니다.
+
+    // Java  
+	interface Collection<E> ... {  
+		void addAll(Collection<? extends E> items);  
+	}
+
+`items` 에서 우리는 E를 읽을 수 있지만  `items`에 어떠한 아이템도 추가할 수 없습니다. 실제로 ? 에 해당하는 값이 E에 해당하는 값인지, E의 sub type인지 알 수 없기 때문입니다.
+
+읽기만 가능하고 쓰기는 불가능한  `? extends E`  는 코틀린에서의  `out`과 비슷한 의미로 사용되고 이런 것들을  **covariance(공변성)**  라 부릅니다.
+
+반대로  읽기는 불가능하고 쓰기만 가능한  자바에선  `? super E`  로 사용되고 코틀린에선  `in`  으로 사용되는  **contravariance(반공변성)** 이 있습니다. 여기서 `?` 자리에는 `E`와 같거나 `E`보다 상위의 타입만 들어올 수 있습니다. 
+
+
+
+
+참고 : https://kotlinlang.org/docs/generics.html#type-projections
+
+
