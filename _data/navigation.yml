@@ -18,8 +18,8 @@ main:
 # sidebar navigation (categories)
 # 2022.02.15 sidebar update : simple ver.
 categories:
-  - title: "자바하린"
-    url: /categories/자바하린/
+  - title: "자바/코틀린하린"
+    url: /categories/자바&코틀린하린/
   - title: "알고리즘하린"
     url: /categories/알고리즘하린/
   - title: "ETC"

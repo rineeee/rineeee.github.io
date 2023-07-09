@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/ETC/%EB%B3%80%EC%84%B1/</loc>
-<lastmod>2023-06-18T00:00:00+09:00</lastmod>
+<loc>http://localhost:4000/%EC%9E%90%EB%B0%94&amp;%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/%EB%B3%80%EC%84%B1/</loc>
+<lastmod>2023-07-09T00:00:00+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>
@@ -11,7 +11,7 @@
 <loc>http://localhost:4000/categories/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/categories/%EC%9E%90%EB%B0%94%ED%95%98%EB%A6%B0/</loc>
+<loc>http://localhost:4000/categories/%EC%9E%90%EB%B0%94&amp;%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%ED%95%98%EB%A6%B0/</loc>
