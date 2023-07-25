@@ -1,0 +1,608 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <style> 
+      ::-webkit-scrollbar{ 
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        width: 0px;
+        background-color: rgba(224, 224, 224, 0.2);
+        /* border-radius: 5px; */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        width: 0px;
+        background-color: rgba(220, 219, 218, 0.6);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        width: 10px;
+        height: 20px;
+        /* background-color: rgba(190, 190, 190, 0.2); */
+        background-color: rgba(193, 192, 191, 0.7);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        width: 10px;
+        /* background-color: rgba(150, 150, 150, 0.1); */
+        background-color: rgba(224, 224, 224, 0.5);
+        border-radius: 5px;
+        /* background: transparent; */
+        /* border-radius: 10px; */
+      }
+
+      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+          width:0px;
+          height: 0px;
+          /* background-color: rgb(14, 221, 24); */
+          /* border-radius: 50%; */
+      }
+    </style>
+    
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>공변성, 반공변성, 무공변성 차이 | 모하린</title>
+<meta name="description" content="공변성, 반공변성, 무공변성 차이를 알아보자">
+
+
+  <meta name="author" content="모하린">
+  
+  <meta property="article:author" content="모하린">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="오늘 뭐하린">
+<meta property="og:title" content="공변성, 반공변성, 무공변성 차이">
+<meta property="og:url" content="http://localhost:4000/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%B0%98%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%AC%B4%EA%B3%B5%EB%B3%80%EC%84%B1/">
+
+
+  <meta property="og:description" content="공변성, 반공변성, 무공변성 차이를 알아보자">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-07-09T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2023-07-09T00:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%B0%98%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%AC%B4%EA%B3%B5%EB%B3%80%EC%84%B1/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "모하린",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="오늘 뭐하린 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://rineeee.github.io/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://rineeee.github.io/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://rineeee.github.io/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://rineeee.github.io/assets/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="https://rineeee.github.io/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          오늘 뭐하린
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://rineeee.github.io/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/rineeee">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile.jpg" alt="모하린" itemprop="image">
+      
+    </div>
+  
+
+  <!-- 2022.02.17 author content hidden -->
+  <!-- <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">모하린</h3>
+    
+    
+  </div> -->
+
+  <div class="author__urls-wrapper">
+    <!-- <button class="btn btn--inverse">Follow</button> -->
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    <!-- <li>
+      <span class="nav__total">🌴 Total Posts: 2</span>
+    </li> -->
+    
+    
+      <li>
+        
+              <a href="/categories/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/"><span class="nav__sub-title">자바/코틀린하린</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%ED%95%98%EB%A6%B0/"><span class="nav__sub-title">알고리즘하린</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="/categories/ETC/"><span class="nav__sub-title">ETC</span></a>
+        
+
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="공변성, 반공변성, 무공변성 차이">
+    <meta itemprop="description" content="공변성, 반공변성, 무공변성 차이를 알아보자">
+    <meta itemprop="datePublished" content="2023-07-09T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2023-07-09T00:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">공변성, 반공변성, 무공변성 차이
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-07-09T00:00:00+09:00">July 9, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#공변성-반공변성-무공변성이란">공변성, 반공변성, 무공변성이란?</a><ul><li><a href="#이펙티브-코틀린">이펙티브 코틀린</a></li></ul></li><li><a href="#generics">Generics</a></li><li><a href="#공변성-반공변성-무공변성">공변성, 반공변성, 무공변성</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="공변성-반공변성-무공변성이란">공변성, 반공변성, 무공변성이란?</h2>
+
+<h3 id="이펙티브-코틀린">이펙티브 코틀린</h3>
+<p><img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/kotlin.png?raw=true" alt="코틀린" />
+코틀린 공부를 해본 사람이라면 대부분은 읽어봤을 “이펙티브 코틀린”에서 공변성, 반공변성이라는 단어가 나옵니다. 
+책을 읽어봐도 쉽게 이해되지 않는 단어이기 때문에 간단하게 정리를 해보려 합니다.</p>
+
+<h2 id="generics">Generics</h2>
+<p>아래 코드와 같이 제너릭은 동일한 코드로 여러 타입을 지원해주기 위해 존재합니다. 한가지 타입에 대한 템플릿이 아니라 여러가지 타입을 사용할 수 있는 클래스같은 코드를 간단하게 작성할 수 있습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Box&lt;T&gt;(t: T)  {  
+    var value = t 
+}
+
+val box: Box&lt;Int&gt;  = Box&lt;Int&gt;(1)
+</code></pre></div></div>
+
+<h2 id="공변성-반공변성-무공변성">공변성, 반공변성, 무공변성</h2>
+<p>제너릭을 사용할 때 주의해야 할 사항이 있습니다. 자바에서 <code class="language-plaintext highlighter-rouge">String</code>은 <code class="language-plaintext highlighter-rouge">Object</code>의 sub type입니다. 그러나 <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code> 은 <code class="language-plaintext highlighter-rouge">List&lt;Object&gt;</code>의 sub type이 아닙니다. 그래서 아래와 같이 컴파일 타임 때 에러를 발생시킵니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Java  
+List&lt;String&gt; strs =  new  ArrayList&lt;String&gt;();  
+List&lt;Object&gt; objs = strs; // error
+</code></pre></div></div>
+
+<p>이렇게 형식 인자들끼리는 sub type 관계를 만족하더라도 제네릭을 사용하는 클래스와 인터페이스에서는 sub type 관계가 유지되지 않는 것이 <code class="language-plaintext highlighter-rouge">Invariance(무공변성)</code>입니다.</p>
+
+<p>제너릭이라는 개념이 도입되면서 Java에서는 모든 타입을 대신할 수 있는 와일드카드 타입(&lt;?&gt;)이 추가되었습니다. 제네릭 형식 인자 선언에 <code class="language-plaintext highlighter-rouge">? extends E</code> 와 같은 문법을 통해 <code class="language-plaintext highlighter-rouge">E</code>나 <code class="language-plaintext highlighter-rouge">E</code>의 sub type의 제네릭 형식을 전달받아 사용할 수 있습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Java  
+interface Collection&lt;E&gt; ... {  
+	void addAll(Collection&lt;? extends E&gt; items);  
+}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">items</code> 에서 우리는 E를 읽을 수 있지만  <code class="language-plaintext highlighter-rouge">items</code>에 어떠한 아이템도 추가할 수 없습니다. 실제로 ? 에 해당하는 값이 E에 해당하는 값인지, E의 sub type인지 알 수 없기 때문입니다.</p>
+
+<p>읽기만 가능하고 쓰기는 불가능한  <code class="language-plaintext highlighter-rouge">? extends E</code>  는 코틀린에서의  <code class="language-plaintext highlighter-rouge">out</code>과 비슷한 의미로 사용되고 이런 것들을  <strong>covariance(공변성)</strong>  라 부릅니다.</p>
+
+<p>반대로  읽기는 불가능하고 쓰기만 가능한  자바에선  <code class="language-plaintext highlighter-rouge">? super E</code>  로 사용되고 코틀린에선  <code class="language-plaintext highlighter-rouge">in</code>  으로 사용되는  <strong>contravariance(반공변성)</strong> 이 있습니다. 여기서 <code class="language-plaintext highlighter-rouge">?</code> 자리에는 <code class="language-plaintext highlighter-rouge">E</code>와 같거나 <code class="language-plaintext highlighter-rouge">E</code>보다 상위의 타입만 들어올 수 있습니다.</p>
+
+<p>참고 : <a href="https://kotlinlang.org/docs/generics.html#type-projections">https://kotlinlang.org/docs/generics.html#type-projections</a></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EC%9E%90%EB%B0%94-%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0" class="page__taxonomy-item" rel="tag">자바&코틀린하린</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-07-09">July 9, 2023</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Prev</a>
+    
+    
+      <a href="/ETC/%EB%9E%8C%EB%8B%A4/" class="pagination--pager" title="GitHub Actions을 이용한 AWS Lambda 배포 자동화
+">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ETC/%EB%9E%8C%EB%8B%A4/" rel="permalink">GitHub Actions을 이용한 AWS Lambda 배포 자동화
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-07-25T00:00:00+09:00">July 25, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub Actions을 활용해 Lambda 배포를 자동화해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/rineeee" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 모하린. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'github-account/repo-name');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>
