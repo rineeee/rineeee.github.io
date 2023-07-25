@@ -1,5 +1,5 @@
 ---
-title: "소프트웨어를 공부하고 있는 김하린입니다"
+title: "개발 공부하고 있는 김하린입니다"
 permalink: /about/
 layout: single
 comments: false
