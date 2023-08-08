@@ -16,9 +16,9 @@ comments: false
           </a>
         </li>
         <li>
-          <a href="mailto:icecandy123@gmail.com">
+          <a href="mailto:harin.kim.dev@gmail.com">
             <meta itemprop="email" content="bemychoiiis@gmail.com" />
-            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">  icecandy123@gmail.com</span>
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">harin.kim.dev@gmail.com</span>
           </a>
         </li>
     </ul>
