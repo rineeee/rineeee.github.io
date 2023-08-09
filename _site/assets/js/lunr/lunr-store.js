@@ -12,8 +12,14 @@ var store = [{
         "teaser": null
       },{
         "title": "Spring Security로 구현하는 인증/인가 (1)",
-        "excerpt":"Authentication VS Authorization spring cloud security로 구현하는 인증/인가의 방법을 알아보기 전에 Authentication(인증)과 Authorization(인가)의 차이에 대해 먼저 알아봅시다. Authentication(인증) 로그인과 같이 사용자 또는 프로세스의 신원을 확인하는 프로세스 인증은 사용자가 자신이 주장하는 신원을 확인하는 프로세스를 의미합니다. 시스템은 사용자가 누구인지 확인하기 위해 제공한 자격 증명(예: 아이디와 비밀번호, 지문, 인증서 등)을 검증합니다. 이로 인해...","categories": ["자바&코틀린하린"],
+        "excerpt":"Authentication VS Authorization spring security로 구현하는 인증/인가의 방법을 알아보기 전에 Authentication(인증)과 Authorization(인가)의 차이에 대해 먼저 알아봅시다. Authentication(인증) 로그인과 같이 사용자 또는 프로세스의 신원을 확인하는 프로세스 인증은 사용자가 자신이 주장하는 신원을 확인하는 프로세스를 의미합니다. 시스템은 사용자가 누구인지 확인하기 위해 제공한 자격 증명(예: 아이디와 비밀번호, 지문, 인증서 등)을 검증합니다. 이에 따라 시스템은...","categories": ["자바&코틀린하린"],
         "tags": [],
         "url": "/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/Auth-1/",
+        "teaser": null
+      },{
+        "title": "Spring Security로 구현하는 인증/인가 (2)",
+        "excerpt":"저번 Spring Security로 구현하는 인증/인가 (1) 에서는 Spring Security의 UsernamePasswordAuthenticationFilter을 이용한 AuthenticationFilter의 attemptAuthentication의 구현으로 UsernamePasswordAuthenticationToken을 생성했습니다. 해당 내용이 이해가 안되면 저번 포스트를 한번 읽고 와주세요!ㅎㅎ 이번 시간은 UserDetailService의 구현과 AuthenticationFilter의 successfulAuthentication을 구현을 진행하겠습니다. Spring Security AuthenticationFilter spring security를 이용한 로그인 요청 발생 시 작업을 처리해 주는 custom Filter입니다. UsernamePasswordAuthenticationFilter를 상속받습니다....","categories": ["자바&코틀린하린"],
+        "tags": [],
+        "url": "/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/Auth-2/",
         "teaser": null
       }]
