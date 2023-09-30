@@ -28,4 +28,10 @@ var store = [{
         "tags": [],
         "url": "/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%ED%95%98%EB%A6%B0/PrefixSum/",
         "teaser": null
+      },{
+        "title": "베이시안 결정 이론(bayesian decision theory)",
+        "excerpt":"Frequentist probability vs Bayesian probability 베이지안 확률을 알아보기 전, 빈도 확률과 베이지안 확률과의 차이점을 알아보겠습니다. Frequentist probability(빈도 확률) 주사위를 던질 때 특정 숫자가 나올 확률을 계산할 때, 통계적으로 이론과 실제 던진 횟수를 토대로 계산 할 수 있습니다. 예를 들어, 주사위를 600번 던져서 1이 나온 횟수를 통해 1이 나올 확률을 추정할...","categories": ["ETC"],
+        "tags": [],
+        "url": "/ETC/bayesian/",
+        "teaser": null
       }]
