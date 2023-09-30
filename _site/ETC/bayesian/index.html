@@ -52,8 +52,8 @@
     
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>GitHub Actions을 이용한 AWS Lambda 배포 자동화 | 모하린</title>
-<meta name="description" content="GitHub Actions을 활용해 Lambda 배포를 자동화해보자">
+<!-- begin _includes/seo.html --><title>베이시안 결정 이론(bayesian decision theory) | 모하린</title>
+<meta name="description" content="베이시안 결정 이론(bayesian decision theory)을 이해해보자">
 
 
   <meta name="author" content="모하린">
@@ -65,32 +65,32 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="오늘 뭐하린">
-<meta property="og:title" content="GitHub Actions을 이용한 AWS Lambda 배포 자동화">
-<meta property="og:url" content="http://localhost:4000/ETC/%EB%9E%8C%EB%8B%A4/">
+<meta property="og:title" content="베이시안 결정 이론(bayesian decision theory)">
+<meta property="og:url" content="http://localhost:4000/ETC/bayesian/">
 
 
-  <meta property="og:description" content="GitHub Actions을 활용해 Lambda 배포를 자동화해보자">
-
-
-
+  <meta property="og:description" content="베이시안 결정 이론(bayesian decision theory)을 이해해보자">
 
 
 
 
-  <meta property="article:published_time" content="2023-07-25T00:00:00+09:00">
 
 
 
-  <meta property="article:modified_time" content="2023-07-25T00:00:00+09:00">
+  <meta property="article:published_time" content="2023-09-30T00:00:00+09:00">
 
 
 
-  
+  <meta property="article:modified_time" content="2023-09-30T00:00:00+09:00">
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/ETC/%EB%9E%8C%EB%8B%A4/">
+
+<link rel="canonical" href="http://localhost:4000/ETC/bayesian/">
 
 
 
@@ -354,15 +354,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="GitHub Actions을 이용한 AWS Lambda 배포 자동화">
-    <meta itemprop="description" content="GitHub Actions을 활용해 Lambda 배포를 자동화해보자">
-    <meta itemprop="datePublished" content="2023-07-25T00:00:00+09:00">
-    <meta itemprop="dateModified" content="2023-07-25T00:00:00+09:00">
+    <meta itemprop="headline" content="베이시안 결정 이론(bayesian decision theory)">
+    <meta itemprop="description" content="베이시안 결정 이론(bayesian decision theory)을 이해해보자">
+    <meta itemprop="datePublished" content="2023-09-30T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2023-09-30T00:00:00+09:00">
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">GitHub Actions을 이용한 AWS Lambda 배포 자동화
+          <h1 id="page-title" class="page__title" itemprop="headline">베이시안 결정 이론(bayesian decision theory)
 </h1>
           
 
@@ -371,7 +371,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2023-07-25T00:00:00+09:00">July 25, 2023</time>
+        <time datetime="2023-09-30T00:00:00+09:00">September 30, 2023</time>
       </span>
     
 
@@ -389,93 +389,54 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#aws-lambda">AWS Lambda</a></li><li><a href="#github-actions">GitHub Actions</a><ul><li><a href="#appleboylambda-actionmaster">appleboy/lambda-action@master</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#frequentist-probability-vs-bayesian-probability">Frequentist probability vs Bayesian probability</a></li><li><a href="#bayes-formula">Bayes’ Formula</a></li><li><a href="#가우시안-분포정규-분포">가우시안 분포(정규 분포)</a></li><li><a href="#discrimination-function">Discrimination Function</a></li><li><a href="#error">Error</a></li></ul>
 
             </nav>
           </aside>
         
-        <h2 id="aws-lambda">AWS Lambda</h2>
-<p>AWS Lambda은 서버를 프로비저닝하거나 관리하지 않고도 코드를 실행할 수 있게 해주는 컴퓨팅 서비스입니다. 따라서 개발자가 서버에 대한 신경 쓸 필요 없이 코드에 집중할 수 있도록 도와줍니다. 그리고 이때 사용한 컴퓨팅 시간, 용량에 대해서만 AWS에게 비용을 지불하면 됩니다.
-그래서 코드를 계속 실행시키기보다는 특정한 시기에만 실행시키는 경우에 Lambda를 사용하면 유용한데, 아래의 경우에 Lambda를 사용하면 좋습니다.</p>
+        <h2 id="frequentist-probability-vs-bayesian-probability">Frequentist probability vs Bayesian probability</h2>
+<p>베이지안 확률을 알아보기 전, 빈도 확률과 베이지안 확률과의 차이점을 알아보겠습니다.</p>
+
 <ul>
-  <li>서버 띄우지 않고 간단한 코드를 실행시키고 싶은 경우</li>
-  <li>특정 기간 또는 특정 주기로 코드를 실행시켜야 하는 경우 (배치)</li>
-  <li>트리거가 실행될 때만 코드를 실행시키고 싶은 경우</li>
+  <li>
+    <p><strong>Frequentist probability(빈도 확률)</strong></p>
+
+    <p>주사위를 던질 때 특정 숫자가 나올 확률을 계산할 때, 통계적으로 이론과 실제 던진 횟수를 	토대로 계산 할 수 있습니다. 예를 들어, 주사위를 600번 던져서 1이 나온 횟수를 통해 1이 나올 확률을 추정할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>Bayesian probability(베이지안 확률)</strong></p>
+
+    <p>비가 올 확률을 예측할 때, 개인적 경험과 지식을 고려하여 확률을 추정할 수 있습니다. 예를 들어, 어떤 날씨 예보가 있더라도 개인은 구름이 많이 끼었을 때 비가 올 확률이 높다고 믿을 수 있죠.</p>
+  </li>
 </ul>
 
-<p>이번 포스트는 GitHub Actions를 이용하여 자동화 배포에 중심을 두고 있습니다. 따라서 AWS Lambda에 대한 더 자세한 설명은 <a href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html">해당 문서</a>를 참고해주시기 바랍니다! :)</p>
+<p>베이시안 확률은 개인의 주관과 경험을 반영하며, 빈도 확률은 반복된 실험 결과를 통해 확률을 계산한다는 차이를 보여줍니다.</p>
 
-<h2 id="github-actions">GitHub Actions</h2>
-<p>자동화 시켜놓은 작업인 <code class="language-plaintext highlighter-rouge">workflow</code>를 사용하여 진행합니다. workflow는 YAML 파일을 통해 어떤 작업이 언제 실행되어야 하는지 정의해주어야 합니다.
-<code class="language-plaintext highlighter-rouge">.github/workflows</code> 폴더 아래에 위치한 YAML 파일로 설정하며, 하나의 코드 저장소에는 여러 개의 workflow, 즉 여러 개의 YAML 파일을 생성할 수 있습니다.</p>
+<h2 id="bayes-formula">Bayes’ Formula</h2>
+<p>일반적으로 패턴 x개가 입력되면 M개 부류에 대해  <code class="language-plaintext highlighter-rouge">사후 확률</code>  를 계산하고 그들 중 가장 큰 값을 갖는 부류로 분류하면 됩니다. 하지만 사후 확률을 직접 계산하는 것은 현실적으로 매우 어렵습니다. 따라서 베이스 정리에 따라 상대적으로 계산이 쉬운  <code class="language-plaintext highlighter-rouge">사전 확률</code> 와  <code class="language-plaintext highlighter-rouge">가능도</code> 의 곱으로 대치하여 계산합니다.
+<img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A5%20%E1%84%87%E1%85%A5%E1%86%B8%E1%84%8E%E1%85%B5%E1%86%A8.png?raw=true" alt="베이어 법칙" /></p>
 
-<h3 id="appleboylambda-actionmaster">appleboy/lambda-action@master</h3>
-<p>GitHub marketplace에 있는<a href="https://github.com/marketplace/actions/aws-lambda-deploy">appleboy/lambda-action@master</a>를 활용해서 진행합니다.
-<img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/lambda-action.png?raw=true" alt="enter image description here" /></p>
+<p>베이스 정리를 <strong>베이지안 확률</strong>이라고 부릅니다.</p>
 
-<p>파이썬 3.9에 대한 배포를 진행하고 싶을 때는 아래와 같이 사용하시면 됩니다.</p>
+<h2 id="가우시안-분포정규-분포">가우시안 분포(정규 분포)</h2>
+<p><img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/1%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%80%E1%85%A1%E1%84%8B%E1%85%AE%E1%84%89%E1%85%B5%E1%84%8B%E1%85%A1%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%91%E1%85%A9.png?raw=true" alt="enter image description here" />
+위 식은 1차원 데이터에서 가우시안 PDF입니다.
+이번 글에서는 training set이 <code class="language-plaintext highlighter-rouge">가우시안 분포(정규 분포)</code>와 유사한 형태로 나타났다는 가정하에서 전개해 보려고 합니다. 즉, 이후부터는  <strong>가우시안 분포에 베이지안 분류기</strong>를 접목합니다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name: deploy lambda
+<h2 id="discrimination-function">Discrimination Function</h2>
+<p>판별함수(discriminant function)는 입력 벡터 x 를 받아 K 클래스 중 하나의 클래스를 반환하는 함수입니다. 위에서 설명한 가우시안으로 판단함수를 만들면 아래와 같습니다.</p>
 
-on:
-  push:
-    branches:
-      - Master
+<p><img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/%E1%84%80%E1%85%A1%E1%84%8B%E1%85%AE%E1%84%89%E1%85%B5%E1%84%8B%E1%85%A1%E1%86%AB%20%E1%84%91%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE.png?raw=true" alt="enter image description here" />
+판단 함수는 베이스 정리에 가우시안 PDF를 적용하여 만들 수 있습니다. 식의 간편화를 위해 log를 적용한 것을 알 수 있습니다.</p>
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+<p><img src="https://github.com/rineeee/rineeee.github.io/blob/main/assets/images/%E1%84%80%E1%85%A1%E1%84%8B%E1%85%AE%E1%84%89%E1%85%B5%E1%84%8B%E1%85%A1%E1%86%AB%20%E1%84%91%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%87%E1%85%B5%E1%84%80%E1%85%AD.png?raw=true" alt="enter image description here" />
+두 개의 판단함수를 비교하면 위와 같습니다.</p>
 
-  steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-
-    - name: Deploy to AWS Lambda
-      uses: appleboy/lambda-action@master
-      with:
-        aws_access_key_id: ${ { secrets.AWS_ACCESS_KEY_ID } }
-        aws_secret_access_key: ${ { secrets.AWS_SECRET_ACCESS_KEY } }
-        aws_region: ${ { secrets.AWS_REGION } }
-        function_name: myLambda
-        source: lambda_function.py
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">${ { secrets. } }</code>는 Lambda 권한이 있는 IAM 계정의 access key id, secret key 그리고 원하는 aws region을 GitHub Settings의 Secrets에 등록하면 됩니다.
-IAM 권한은 아래처럼 부여하면 됩니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "iam:ListRoles",
-        "lambda:UpdateFunctionCode",
-        "lambda:CreateFunction",
-        "lambda:GetFunction",
-        "lambda:UpdateFunctionConfiguration",
-        "lambda:GetFunctionConfiguration"
-      ],
-      "Resource": "arn:aws:lambda:${REGION}:${ACCOUNT}:function:${LAMBDA_NAME}"
-    }
-  ]
-}
-</code></pre></div></div>
-
-<p>이 밖에도 zip 파일을 사용할 수 있습니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> with:
-    aws_access_key_id: ${ { secrets.AWS_ACCESS_KEY_ID } }
-    aws_secret_access_key: ${ { secrets.AWS_SECRET_ACCESS_KEY } }
-    aws_region: ${ { secrets.AWS_REGION } }
-    function_name: gorush
-    zip_file: output.zip
-    dry_run: true
-</code></pre></div></div>
-
+<h2 id="error">Error</h2>
+<p>가우시안 분포를 가지는 두 개의 training set이 있다고 가정해 보겠습니다. 그러면 아래처럼 그래프를 표현할 수 있습니다.
+<img src="https://ranabasheer.files.wordpress.com/2011/04/bayes_error.jpg" alt="enter image description here" />이때 P(C1|x)와 P(C2|x)의 교점을 중심으로 
+Region of Error의 왼쪽 부분은 P(C2|x)인데 P(C1|x)를 선택할 확률이며,
+Region of Error의 오른쪽 부분은 P(C1|x)인데 P(C2|x)를 선택할 확률임을 알 수 있습니다.</p>
 
         
       </section>
@@ -501,7 +462,7 @@ IAM 권한은 아래처럼 부여하면 됩니다.</p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-07-25">July 25, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-09-30">September 30, 2023</time></p>
 
 
       </footer>
@@ -511,12 +472,11 @@ IAM 권한은 아래처럼 부여하면 됩니다.</p>
       
   <nav class="pagination">
     
-      <a href="/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%B0%98%EA%B3%B5%EB%B3%80%EC%84%B1,%EB%AC%B4%EA%B3%B5%EB%B3%80%EC%84%B1/" class="pagination--pager" title="공변성, 반공변성, 무공변성 차이
+      <a href="/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%ED%95%98%EB%A6%B0/PrefixSum/" class="pagination--pager" title="누적합
 ">Prev</a>
     
     
-      <a href="/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/Auth-1/" class="pagination--pager" title="Spring Security로 구현하는 인증/인가 (1)
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -531,42 +491,6 @@ IAM 권한은 아래처럼 부여하면 됩니다.</p>
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/ETC/bayesian/" rel="permalink">베이시안 결정 이론(bayesian decision theory)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2023-09-30T00:00:00+09:00">September 30, 2023</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">베이시안 결정 이론(bayesian decision theory)을 이해해보자
-</p>
-  </article>
-</div>
-
         
           
 
@@ -671,6 +595,42 @@ IAM 권한은 아래처럼 부여하면 됩니다.</p>
 
 
     <p class="archive__item-excerpt" itemprop="description">UsernamePasswordAuthenticationFilter을 이용해 인증/인가 로직을 구현하자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ETC/%EB%9E%8C%EB%8B%A4/" rel="permalink">GitHub Actions을 이용한 AWS Lambda 배포 자동화
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-07-25T00:00:00+09:00">July 25, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub Actions을 활용해 Lambda 배포를 자동화해보자
 </p>
   </article>
 </div>
