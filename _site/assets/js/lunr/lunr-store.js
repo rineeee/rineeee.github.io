@@ -46,4 +46,10 @@ var store = [{
         "tags": [],
         "url": "/ETC/news-feed-system-design/",
         "teaser": null
+      },{
+        "title": "Spring HTTP 통신 흐름",
+        "excerpt":"스프링 HTTP 통신 흐름 스프링 프레임워크를 사용하여 naver.com으로의 HTTP 통신 과정을 간단히 설명해보겠습니다. 이 예시에서는 스프링 MVC를 기반으로 합니다. URL 입력 웹 브라우저에 www.naver.com 을 입력합니다. DNS HTTP는 기본적으로 TCP/IP 통신을 하기 때문에 www.naver.com에 대한 IP를 알아내야합니다. 이때 www.naver.com를 IP로 변경해줄 수 있는 DNS가 필요합니다. 웹 브라우저에 www.naver.com를 입력하면, 컴퓨터의...","categories": ["자바&코틀린하린"],
+        "tags": [],
+        "url": "/%EC%9E%90%EB%B0%94&%EC%BD%94%ED%8B%80%EB%A6%B0%ED%95%98%EB%A6%B0/SpringMVC-HTTP/",
+        "teaser": null
       }]
